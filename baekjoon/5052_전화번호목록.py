@@ -1,3 +1,5 @@
+#문자열, 정렬
+
 import sys
 input = sys.stdin.readline
 
@@ -14,3 +16,5 @@ for _ in range(t):
             flg = "NO"
             break
     print(flg)
+    
+  
