@@ -10,6 +10,7 @@ def solution(rows, columns, queries):
         x2 -= 1
        
         minn = rows*columns
+        
         y1x2 = arr[y1][x2]
         for nx in range(x2, x1, -1):
             arr[y1][nx] = arr[y1][nx-1]
