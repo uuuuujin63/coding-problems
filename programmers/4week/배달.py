@@ -14,11 +14,11 @@ def solution(N, road, K):
         x, cost = q.popleft()
         if x not in visit:
             visit.append(x)
-        for i in range(1, N+1):
-            for j in range(len(town[x])):
-                if town[x][j][0] == i:
-                    if cost+town[x][j][1]<=K:
-                        q.append([i, cost+town[x][j][1]])
+        for nowx, nowc in town[x]:
+            if cost+nowc <= K:
+                q.append([nowx, cost+nowc])
+        if len(visit) == N-1:
+            return len(visit)
     answer = len(visit)
     return answer
 
