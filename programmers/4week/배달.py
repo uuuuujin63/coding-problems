@@ -1,22 +1,25 @@
-from collections import deque
+import heapq
 def solution(N, road, K):
     answer = 0
     town = [[] for _ in range(N+1)]
     for i, j, cost in road:
         town[i].append([j, cost])
         town[j].append([i, cost])
-    q = deque()
+    sorted(town)
+    q = []
     visit = []
     for i, cost in town[1]:
         if cost<=K:
-            q.append([i, cost])
+            heapq.heappush(q, [i, cost])
+    print(q)
     while q:
-        x, cost = q.popleft()
+        print(q)
+        x, cost = heapq.heappop(q)
         if x not in visit:
             visit.append(x)
         for nowx, nowc in town[x]:
             if cost+nowc <= K:
-                q.append([nowx, cost+nowc])
+                heapq.heappush(q, [nowx, cost+nowc])
         if len(visit) == N-1:
             return len(visit)
     answer = len(visit)
