@@ -1,7 +1,5 @@
+import collections
 def solution(str1, str2):
-    answer = 1
-    uni = 0
-    inter = 0
     s1 = []
     s2 = []
     str1 = str1.upper()
@@ -12,16 +10,12 @@ def solution(str1, str2):
     for j in range(len(str2)-1):
         if str2[j:j+2].isalpha():
             s2.append(str2[j:j+2])
-    for ss1 in s1:
-        for ss2 in s2:
-            if ss1==ss2:
-                inter += 1
-    uni = len(s1)+len(s2)-inter
-    if uni == 0 and inter == 0:
-        return 65536
-    answer = int(inter/uni*65536)
-    return answer
+    counter1, counter2 = collections.Counter(s1), collections.Counter(s2)
+    inter, uni = counter1&counter2, counter2|counter1
+    i_s, u_s = sum(x[1] for x in inter.items()), sum(x[1] for x in uni.items())
+    if u_s == 0: return 65536
+    else: return i_s//u_s*65536
 
-str1 = '12444'
-str2 = '4456788'
+str1 = 'aaa'
+str2 = 'AAAA'
 print(solution(str1, str2))
