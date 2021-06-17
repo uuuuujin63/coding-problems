@@ -3,7 +3,7 @@ def solution(priorities, location):
     answer = 0
     
     d = deque([(v,i) for i,v in enumerate(priorities)])
-    
+    print(d)
     while d:
         nowlist = d.popleft()
         if len(d)!=0:
@@ -19,6 +19,6 @@ def solution(priorities, location):
                 break
     return answer
 
-priorities = [1,1,9,1,1,1]
+priorities = [2, 1, 4, 5]
 location = 0
 print(solution(priorities, location))
